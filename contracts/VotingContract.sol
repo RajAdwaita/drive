@@ -70,10 +70,10 @@ contract Create {
     function setCandidate(
         address _address,
         string memory _age,
-        string _name,
+        string memory _name,
         string memory _image,
         string memory _ipfs
-    ) {
+    ) public {
         require(
             votingOrganizer == msg.sender,
             "Only Organizer can allocate candidates"
@@ -113,7 +113,7 @@ contract Create {
         return candidateAddress.length;
     }
 
-    function getCandidateData()
+    function getCandidateData(address _address)
         public
         view
         returns (
@@ -133,7 +133,7 @@ contract Create {
             candidates[_address].image,
             candidates[_address].voteCount,
             candidates[_address].ipfs,
-            candidates[_address]._address,
+            candidates[_address]._address
 
         );
     }
@@ -153,7 +153,7 @@ contract Create {
 
         uint256 idNumber = _voterId.current();
 
-        Voter storage voters = voters[_address];
+        Voter storage voter = voters[_address];
 
         require(voter.voter_allowed == 0);
 
@@ -164,7 +164,7 @@ contract Create {
         voter.voter_voterId = idNumber;
         voter.voter_vote = 1000;
         voter.voter_voted = false;
-        voter.voter_ipfs = ipfs;
+        voter.voter_ipfs = _ipfs;
 
         votersAddress.push(_address);
 

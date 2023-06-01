@@ -8,10 +8,10 @@ async function main() {
 
   // const lockedAmount = hre.ethers.utils.parseEther("0.001");
 
-  const Lock = await hre.ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy();
+  const Create = await hre.ethers.getContractFactory("Create");
+  const create = await Create.deploy();
 
-  await lock.deployed();
+  await create.deployed();
 
   // console.log(
   //   `Lock with ${ethers.utils.formatEther(
@@ -19,7 +19,7 @@ async function main() {
   //   )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`
   // );
 
-  console.log("Lock with 1 ETH deployed to", lock.address);
+  console.log("Lock with 1 ETH deployed to", create.address);
 }
 
 main().catch((error) => {
